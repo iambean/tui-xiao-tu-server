@@ -1,0 +1,139 @@
+{
+  // 唯一标识符 Unique identifier for the post
+  "id": "114702168289928778",
+  // 创建时间（ISO 8601 格式） Creation time (ISO 8601 format)
+  "created_at": "2025-06-18T03:09:50.998Z",
+  // 回复的目标动态ID（如果是回复） ID of the post being replied to (if any)
+  "in_reply_to_id": null,
+  // 引用的动态ID（如果有引用） ID of the quoted post (if any)
+  "quote_id": null,
+  // 回复的目标账号ID（如果是回复） ID of the account being replied to (if any)
+  "in_reply_to_account_id": null,
+  // 是否为敏感内容 Whether the post is marked as sensitive
+  "sensitive": false,
+  // 内容警告文本（如有） Spoiler or content warning text (if any)
+  "spoiler_text": "",
+  // 可见性（如公开、仅关注者等） Visibility (e.g., public, followers-only)
+  "visibility": "public",
+  // 语言（如有） Language (if specified)
+  "language": null,
+  // 唯一资源标识符 URI of the post
+  "uri": "https://truthsocial.com/@realDonaldTrump/114702168289928778",
+  // 动态的网页链接 URL to the post's web page
+  "url": "https://truthsocial.com/@realDonaldTrump/114702168289928778",
+  // 动态内容（HTML 格式） Content of the post (HTML format)
+  "content": "<p><a href=\"https://truthsocial.com/@WhiteHouse/114700049463664915\" rel=\"nofollow noopener noreferrer\" target=\"_blank\"><span class=\"invisible\">https://</span><span class=\"ellipsis\">truthsocial.com/@WhiteHouse/11</span><span class=\"invisible\">4700049463664915</span></a></p>",
+  // 发布账号信息 Account information of the poster
+  "account": {
+    // 账号唯一ID Unique account ID
+    "id": "107780257626128497",
+    // 用户名 Username
+    "username": "realDonaldTrump",
+    // 本地账号名（不带实例域名） Local account name (without instance domain)
+    "acct": "realDonaldTrump",
+    // 显示名称 Display name
+    "display_name": "Donald J. Trump",
+    // 是否锁定（需批准关注） Whether the account is locked (follow requests required)
+    "locked": false,
+    // 是否为机器人账号 Whether the account is a bot
+    "bot": false,
+    // 是否可被发现（搜索） Whether the account is discoverable (searchable)
+    "discoverable": false,
+    // 是否为群组账号 Whether the account is a group
+    "group": false,
+    // 账号创建时间 Account creation time
+    "created_at": "2022-02-11T16:16:57.705Z",
+    // 个人简介（HTML 格式） Account bio/description (HTML format)
+    "note": "<p></p>",
+    // 账号主页链接 URL to the account's profile
+    "url": "https://truthsocial.com/@realDonaldTrump",
+    // 头像图片链接 URL to the avatar image
+    "avatar": "https://static-assets-1.truthsocial.com/tmtg:prime-ts-assets/accounts/avatars/107/780/257/626/128/497/original/454286ac07a6f6e6.jpeg",
+    // 静态头像图片链接 URL to the static avatar image
+    "avatar_static": "https://static-assets-1.truthsocial.com/tmtg:prime-ts-assets/accounts/avatars/107/780/257/626/128/497/original/454286ac07a6f6e6.jpeg",
+    // 头图图片链接 URL to the header/banner image
+    "header": "https://static-assets-1.truthsocial.com/tmtg:prime-ts-assets/accounts/headers/107/780/257/626/128/497/original/ba3b910ba387bf4e.jpeg",
+    // 静态头图图片链接 URL to the static header image
+    "header_static": "https://static-assets-1.truthsocial.com/tmtg:prime-ts-assets/accounts/headers/107/780/257/626/128/497/original/ba3b910ba387bf4e.jpeg",
+    // 粉丝数 Number of followers
+    "followers_count": 10008101,
+    // 关注数 Number of accounts this user is following
+    "following_count": 72,
+    // 动态数 Number of statuses/posts
+    "statuses_count": 27270,
+    // 最后发动态时间 Last status update time
+    "last_status_at": "2025-06-18",
+    // 是否认证账号 Whether the account is verified
+    "verified": true,
+    // 位置 Location (if provided)
+    "location": "",
+    // 个人网站 Website (if provided)
+    "website": "www.DonaldJTrump.com",
+    // 未登录可见性 Whether visible to unauthenticated users
+    "unauth_visibility": true,
+    // 聊天功能是否开通 Whether chat is enabled
+    "chats_onboarded": true,
+    // feeds功能是否开通 Whether feeds are enabled
+    "feeds_onboarded": true,
+    // 是否接受私信 Whether accepting direct messages
+    "accepting_messages": false,
+    // 是否显示非成员群组动态 Whether to show non-member group statuses
+    "show_nonmember_group_statuses": false,
+    // 自定义表情 Custom emojis
+    "emojis": [],
+    // 自定义字段 Custom fields
+    "fields": [],
+    // TV功能是否开通 Whether TV feature is enabled
+    "tv_onboarded": false,
+    // 是否为TV账号 Whether this is a TV account
+    "tv_account": false,
+    // 是否为高级账号 Whether this is a premium account
+    "premium": false
+  },
+  // 媒体附件（如图片、视频） Media attachments (images, videos, etc.)
+  "media_attachments": [],
+  // 提及的用户 Mentions (users referenced in the post)
+  "mentions": [],
+  // 话题标签 Hashtags
+  "tags": [],
+  // 卡片信息（如链接预览） Card info (e.g., link preview)
+  "card": null,
+  // 群组信息（如有） Group info (if any)
+  "group": null,
+  // 引用内容（如有） Quoted content (if any)
+  "quote": null,
+  // 回复内容（如有） Reply content (if any)
+  "in_reply_to": null,
+  // 转发内容（如有） Reblogged content (if any)
+  "reblog": null,
+  // 是否为广告/推广内容 Whether this is a sponsored/promoted post
+  "sponsored": false,
+  // 回复数 Number of replies
+  "replies_count": 74,
+  // 转发数 Number of reblogs/shares
+  "reblogs_count": 125,
+  // 收藏数 Number of favourites/likes
+  "favourites_count": 440,
+  // 当前用户的表态（如点赞/表情） Reaction by current user (if any)
+  "reaction": null,
+  // 顶数（如有） Number of upvotes (if any)
+  "upvotes_count": 440,
+  // 踩数（如有） Number of downvotes (if any)
+  "downvotes_count": 0,
+  // 当前用户是否已收藏 Whether the current user has favourited this post
+  "favourited": false,
+  // 当前用户是否已转发 Whether the current user has reblogged this post
+  "reblogged": false,
+  // 当前用户是否已屏蔽 Whether the current user has muted this post
+  "muted": false,
+  // 是否置顶 Whether the post is pinned
+  "pinned": false,
+  // 当前用户是否已收藏书签 Whether the current user has bookmarked this post
+  "bookmarked": false,
+  // 投票信息（如有） Poll info (if any)
+  "poll": null,
+  // 自定义表情 Custom emojis
+  "emojis": [],
+  // 是否可投票 Whether the post is votable
+  "votable": false
+}

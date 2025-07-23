@@ -1,20 +1,16 @@
 import express from 'express';
 import path from 'path';
-// import { fileURLToPath } from 'url';
-import Joi from 'joi';
 
 import applyMiddlewares from './middlewares/normal.js';
 
 import DBFactory from './database/DBFactory.js';
 import staticRoutes from './routes/static-route.js';
-import userRoutes from './routes/user.route.js';
-// 未来可以继续导入其他路由模块，如 productRoutes、orderRoutes 等
+import userRoute from './routes/api/user.route.js';
+import timelineRoute from './routes/api/timeline.route.js';
 
 import dotenv from 'dotenv';
 import errorHandler from './middlewares/errorHandle.js';
 
-// const __dirname = path.dirname(__filename, fileURLToPath(import.meta.url));
-// const envFile = path.join(__dirname, `../.env.${process.env.NODE_ENV}`);
 const envFile = path.join(process.cwd(), `.env/.env.${process.env.NODE_ENV}`);
 console.log('envFile:', envFile);
 // Load environment variables from .env file based on the environment
@@ -33,7 +29,8 @@ app.use('/', staticRoutes);
 applyMiddlewares(app);
 
 // 传递 dbAdapter 给各个路由模块，方便未来扩展
-app.use('/api/users', userRoutes(dbAdapter));
+app.use('/api/users', userRoute(dbAdapter));
+app.use('/api/timelines', timelineRoute(dbAdapter));
 // app.use('/api/products', productRoutes(dbAdapter));
 // app.use('/api/orders', orderRoutes(dbAdapter));
 

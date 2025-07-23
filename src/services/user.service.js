@@ -3,27 +3,28 @@ export default class UserService {
     this.dbAdapter = dbAdapter;
   }
 
-  getModel() {
+  // getModel is a private method.
+  #getModel() {
     return this.dbAdapter.getModel('User');
   }
 
   async create(data) {
-    const user = await this.getModel().create(data);
+    const user = await this.#getModel().create(data);
     return user;
   }
 
   async read(filter) {
-    const users = await this.getModel().findAll({ where: filter });
+    const users = await this.#getModel().findAll({ where: filter });
     return users;
   }
 
   async update(id, data) {
-    const result = await this.getModel().update(data, { where: { id } });
+    const result = await this.#getModel().update(data, { where: { id } });
     return result;
   }
 
   async delete(id) {
-    const result = await this.getModel().destroy({ where: { id } });
+    const result = await this.#getModel().destroy({ where: { id } });
     return result; 
   }
 }
