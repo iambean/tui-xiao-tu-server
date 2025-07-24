@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timeline</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .timeline-list { margin-bottom: 20px; }
+    .timeline-item { padding: 10px; border: 1px solid #ddd; margin-bottom: 5px; }
+    .timeline-detail { padding: 20px; border: 1px solid #ddd; }
+    button { margin: 5px; padding: 5px 10px; }
+  </style>
+</head>
+<body>
+  <h1>Timeline</h1>
+  
+  <div id="timeline-list-view">
+    <h2>Timeline List</h2>
+    <button id="create-btn">Create New</button>
+    <div class="timeline-list" id="timeline-list"></div>
+  </div>
+
+  <div id="timeline-detail-view" style="display:none;">
+    <button id="back-btn">Back to List</button>
+    <button id="delete-btn">Delete</button>
+    <div class="timeline-detail" id="timeline-detail"></div>
+  </div>
+
+  <script>
+    // API endpoints
+    const API_BASE = '/api/timelines';
+    
+    // DOM elements
+    const listView = document.getElementById('timeline-list-view');
+    const detailView = document.getElementById('timeline-detail-view');
+    const timelineList = document.getElementById('timeline-list');
+    const timelineDetail = document.getElementById('timeline-detail');
+    const createBtn = document.getElementById('create-btn');
+    const backBtn = document.getElementById('back-btn');
+    const deleteBtn = document.getElementById('delete-btn');
+    
+    let currentTimelineId = null;
+    
+    // Fetch timeline list
+    async function fetchTimelines() {
+      try {
+        const response = await fetch(API_BASE);
+        const { data: timelines, error } = await response.json();
+        if (error) {
+          console.error('Error fetching timelines:', error);
+          return;
+        }
+        renderTimelineList(timelines);
+      } catch (error) {
+        console.error('Error fetching timelines:', error);
+      }
+    }
+    
+    // Fetch single timeline
+    async function fetchTimeline(id) {
+      try {
+        const response = await fetch(`${API_BASE}/${id}`);
+        const { error, message, data: timeline } = await response.json();
+        if(error){
+          throw new Error(message);
+        }
+        renderTimelineDetail(timeline);
+        currentTimelineId = id;
+        listView.style.display = 'none';
+        detailView.style.display = 'block';
+      } catch (error) {
+        console.error('Error fetching timeline:', error);
+      }
+    }
+    
+    // Create new timeline
+    async function createTimeline() {
+      try {
+        // Generate mock data
+        const mockContent = `Mock timeline content ${Math.floor(Math.random() * 1000)}`;
+        const mockData = {
+          id: `mock-id-${Math.random().toString(36).substring(2, 10)}`,
+          account_id: 'mock-account-id',
+          created_at: new Date().toISOString(),
+          sensitive: false,
+          visibility: 'public',
+          uri: `mock-uri-${Math.random().toString(36).substring(2, 10)}`,
+          url: `https://example.com/mock-url-${Math.random().toString(36).substring(2, 10)}`,
+          content: mockContent,
+          replies_count: 0,
+          reblogs_count: 0,
+          favourites_count: 0,
+          upvotes_count: 0,
+          downvotes_count: 0,
+          favourited: false,
+          reblogged: false,
+          muted: false,
+          pinned: false,
+          bookmarked: false,
+          votable: false
+        };
+        
+        const response = await fetch(API_BASE, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(mockData)
+        });
+        const newTimeline = await response.json();
+        fetchTimelines();
+      } catch (error) {
+        console.error('Error creating timeline:', error);
+      }
+    }
+    
+    // Delete timeline
+    async function deleteTimeline() {
+      if (!currentTimelineId) return;
+      
+      try {
+        await fetch(`${API_BASE}/${currentTimelineId}`, {
+          method: 'DELETE'
+        });
+        fetchTimelines();
+        listView.style.display = 'block';
+        detailView.style.display = 'none';
+      } catch (error) {
+        console.error('Error deleting timeline:', error);
+      }
+    }
+    
+    // Render timeline list
+    function renderTimelineList(timelines) {
+      timelineList.innerHTML = '';
+      timelines.forEach(timeline => {
+        const item = document.createElement('div');
+        item.className = 'timeline-item';
+        item.innerHTML = `
+          <h3>${timeline.id}</h3>
+          <p>${timeline.content?.substring(0, 50)}...</p>
+        `;
+        item.addEventListener('click', () => fetchTimeline(timeline.id));
+        timelineList.appendChild(item);
+      });
+    }
+    
+    // Render timeline detail
+    function renderTimelineDetail(timeline) {
+      timelineDetail.innerHTML = `
+        <h2>Timeline Detail</h2>
+        <p><strong>ID:</strong> ${timeline.id}</p>
+        <p><strong>Content:</strong> ${timeline.content}</p>
+        <p><strong>Created At:</strong> ${timeline.created_at}</p>
+        <p><strong>Replies:</strong> ${timeline.replies_count}</p>
+        <p><strong>Reblogs:</strong> ${timeline.reblogs_count}</p>
+        <p><strong>Favorites:</strong> ${timeline.favourites_count}</p>
+      `;
+    }
+    
+    // Event listeners
+    createBtn.addEventListener('click', createTimeline);
+    backBtn.addEventListener('click', () => {
+      listView.style.display = 'block';
+      detailView.style.display = 'none';
+    });
+    deleteBtn.addEventListener('click', deleteTimeline);
+    
+    // Initial load
+    fetchTimelines();
+  </script>
+</body>
+</html>

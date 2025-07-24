@@ -5,15 +5,16 @@ class TimelineController {
   constructor(dbAdapter) {
     this.timelineService = new TimelineService(dbAdapter);
   }
-  // Create a new timeline post
-  // async saveTweets(req, res) {
-  //   try {
-  //     const timeline = await timelineService.create(req.body);
-  //     res.json(success(timeline));
-  //   } catch (err) {
-  //     res.status(500).json(error(err.message));
-  //   }
-  // }
+  // 创建timeline(支持单个和批量)
+  async saveTweets(req, res) {
+    try {
+      const result = await this.timelineService.create(req.body);
+      console.log('saveTweets result:', result);
+      res.json(ResponseHelper.success(result));
+    } catch (err) {
+      res.status(500).json(ResponseHelper.error(err.message));
+    }
+  }
 
   // Get all timeline posts (only key fields)
   async getAllTweets(req, res) {
@@ -36,15 +37,25 @@ class TimelineController {
     }
   }
 
-  // Get a single timeline post by ID (all fields)
+  // 获取单个timeline(全量字段)
   async getTweet(req, res) {
     try {
-      const timeline = await this.timelineService.getModel().findByPk(req.params.id);
+      const timeline = await this.timelineService.findOne(req.params.id);
       if (timeline){
         res.json(ResponseHelper.success(timeline));
       }else {
         res.status(404).json(ResponseHelper.error('Timeline not found'));
       }
+    } catch (err) {
+      res.status(500).json(ResponseHelper.error(err.message));
+    }
+  }
+
+  // 删除timeline(支持单个和批量)
+  async deleteTweet(req, res) {
+    try {
+      const result = await this.timelineService.delete(req.params.id);
+      res.json(ResponseHelper.success(result));
     } catch (err) {
       res.status(500).json(ResponseHelper.error(err.message));
     }

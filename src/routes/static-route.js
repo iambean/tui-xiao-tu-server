@@ -8,7 +8,12 @@ router.use(express.static(path.join(process.cwd(), '/static')));
 
 // Demo页面路由
 router.get('/demo', (req, res) => {
-  res.sendFile(path.join(process.cwd(), '/static/demo/index.html'));
+  res.sendFile(path.join(process.cwd(), '/static/user/index.html'));
+});
+
+// Timeline页面路由
+router.get('/timeline', (req, res) => {
+  res.sendFile(path.join(process.cwd(), '/static/timeline/index.html'));
 });
 
 export default router;
