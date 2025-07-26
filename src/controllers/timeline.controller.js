@@ -5,17 +5,7 @@ class TimelineController {
   constructor(dbAdapter) {
     this.timelineService = new TimelineService(dbAdapter);
   }
-  // 创建timeline(支持单个和批量)
-  async saveTweets(req, res) {
-    try {
-      const result = await this.timelineService.create(req.body);
-      console.log('saveTweets result:', result);
-      res.json(ResponseHelper.success(result));
-    } catch (err) {
-      res.status(500).json(ResponseHelper.error(err.message));
-    }
-  }
-
+  
   // Get all timeline posts (only key fields)
   async getAllTweets(req, res) {
     try {
@@ -51,6 +41,19 @@ class TimelineController {
     }
   }
 
+  //!写操作只需在爬虫端完成，只需要 service，无需 controller。这里只作为测试用
+  // 创建timeline(支持单个和批量) 
+  async saveTweets(req, res) {
+    try {
+      const result = await this.timelineService.create(req.body);
+      console.log('saveTweets result:', result);
+      res.json(ResponseHelper.success(result));
+    } catch (err) {
+      res.status(500).json(ResponseHelper.error(err.message));
+    }
+  }
+
+  //! 同为写操作，不提供面向用户的 api，这里只作为测试用 
   // 删除timeline(支持单个和批量)
   async deleteTweet(req, res) {
     try {

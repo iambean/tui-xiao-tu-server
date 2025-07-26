@@ -7,14 +7,7 @@ export default class TimelineService {
     return this.dbAdapter.getModel('Timeline');
   }
 
-  async create(data) {
-    const model = this.#getModel();
-    if (Array.isArray(data)) {
-      return await model.bulkCreate(data);
-    }
-    return await model.create(data);
-  }
-
+  //---------------the following read methods are used by controller----------------//
   // 可单可多。
   async find(filter = {}) {
     const model = this.#getModel();
@@ -26,10 +19,29 @@ export default class TimelineService {
     return await model.findByPk(id);
   }
 
-  //
-  async delete(id) {
+  //---------------the following write methods are used by crawler----------------//
+  async __saveOne(data) {
     const model = this.#getModel();
-    const where = Array.isArray(id) ? { id: { [Op.in]: id } } : { id };
-    return await model.destroy({ where });
+    return await model.upsert(data);
+  }
+
+  async __saveMany(data) {
+    const model = this.#getModel();
+    return await model.bulkCreate(data, { updateOnDuplicate: true });
+  }
+
+  async __deleteOne(id) {
+    const model = this.#getModel();
+    return await model.destroy({ where: { id } });
+  }
+
+  async __delete(idList) {
+    const model = this.#getModel();
+    return await model.destroy({ where: { id: { [Op.in]: idList } } });
+  }
+
+  async __cleanDataset() {
+    const model = this.#getModel();
+    return await model.destroy({ where: {} });
   }
 }

@@ -11,6 +11,8 @@ import timelineRoute from './routes/api/timeline.route.js';
 import dotenv from 'dotenv';
 import errorHandler from './middlewares/errorHandle.js';
 
+import { init as initCrawler } from './crawler/index.js';
+
 const envFile = path.join(process.cwd(), `.env/.env.${process.env.NODE_ENV}`);
 console.log('envFile:', envFile);
 // Load environment variables from .env file based on the environment
@@ -42,6 +44,7 @@ let server = null;
 
 (async ()=>{
   await dbAdapter.connect();
+  await initCrawler();
   // console.log('数据库连接已建立，应用程序即将启动。',dbAdapter);
   server = app.listen(SERVER_PORT, async () => {
     console.log(`Server running on http://localhost:${SERVER_PORT}`);
