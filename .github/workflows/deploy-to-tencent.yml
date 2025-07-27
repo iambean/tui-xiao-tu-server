@@ -26,11 +26,8 @@ jobs:
             mkdir -p /data/proj/tui-xiao-tu
             cd /data/proj/tui-xiao-tu
             
-            # Clean up existing files (if any)
-            rm -rf * 2>/dev/null || true
-            
-            # Clone the repository
-            git clone https://github.com/${{ github.repository }} .
+            # 使用rsync进行增量更新
+            rsync -avz --delete --exclude='.git/' ${{ github.workspace }}/ ${{ secrets.TENCENT_CLOUD_USERNAME }}@${{ secrets.TENCENT_CLOUD_HOST }}:/data/proj/tui-xiao-tu
             
             # Optional: Install dependencies if package.json exists
             if [ -f "package.json" ]; then
