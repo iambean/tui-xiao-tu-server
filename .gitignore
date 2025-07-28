@@ -5,9 +5,10 @@ node_modules/
 !db/
 db/*.sqlite
 
-# 环境变量文件, 仅保留示例文件
+# 环境变量文件, 仅保留示例文件和开发配置文件
 .env/*
 !.env/.env.example
+!.env/.env.development
 
 # 测试报告
 coverage/
