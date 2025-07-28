@@ -30,6 +30,8 @@ jobs:
             rm -rf * 2>/dev/null || true
             
             # Clone the repository
+            # Ensure the directory is empty before cloning
+            rm -rf /data/proj/tui-xiao-tu/* /data/proj/tui-xiao-tu/.* 2>/dev/null || true
             git clone https://github.com/${{ github.repository }} .
             
             # Optional: Install dependencies if package.json exists
