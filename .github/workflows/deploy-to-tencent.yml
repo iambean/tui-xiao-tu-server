@@ -34,7 +34,7 @@ jobs:
             rm -rf /data/proj/tui-xiao-tu/* /data/proj/tui-xiao-tu/.* 2>/dev/null || true
             git clone https://github.com/${{ github.repository }} .
             
-            # Optional: Install dependencies if package.json exists
-            if [ -f "package.json" ]; then
-              npm install
-            fi
+            # # Optional: Install dependencies if package.json exists
+            # if [ -f "package.json" ]; then
+            #   npm install
+            # fi
